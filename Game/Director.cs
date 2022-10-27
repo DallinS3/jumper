@@ -33,6 +33,7 @@ namespace Game
         /// </summary>
         public Director()
         {
+            delivery.WriteLines("\nWelcome to the Jumper Game!\n");
             // TerminalService ts = new TerminalService();
         }
 
@@ -55,7 +56,7 @@ namespace Game
             // letter from player
             // store string
 
-            string letter = delivery.ReadText("What letter do you guess?\nGUESS: ");
+            string letter = delivery.ReadText("\nWhat letter do you guess?\nGUESS: ");
             return letter;
         }
         private void DoUpdates(string guess)
@@ -80,9 +81,17 @@ namespace Game
             // displayParachute()
             // gameOver()
             
-            if (jumper.parachute.Count == 5 || word.isGuessed)
+            if (jumper.parachute.Count == 3)
             {
                 _isPlaying = false;
+                delivery.WriteText("\nThe Jumper died. You lose.\n");
+                delivery.WriteText($"{word.displayNewWord}");
+            }
+            else if ( word.isFound())
+            {
+                _isPlaying = false;
+                delivery.WriteText("\nCongratulations! You guessed the word correctly and brought the Jumper down safe and sound.\n");
+                delivery.WriteText($"\n{word.displayNewWord}\n");
             }
             else{
                 word.Draw();

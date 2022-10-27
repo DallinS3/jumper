@@ -5,7 +5,7 @@ namespace Game
 {
     public class Word
     {
-        string randomWord = "";
+        protected string randomWord = "";
         string logPath = "D:\\user_DallinS\\Computer Folders\\School Stuff\\byu-i_3fall2022\\b2_cse210-02_program-with-classes_phillips\\Jumper\\Game\\new_file.txt";
         private List<string> guesses = new List<string>();
         public bool isGuessed = false;
@@ -14,16 +14,23 @@ namespace Game
 
         public Word()
         {
-            List<string> wordList = new List<string> { "about", "apricot", "apple", "ate", "eight", "infinity", "duodecillion", "numerical", "fruit", "antidisestablishmentarianism", "pneumonoultramicroscopicsolicovolcaniconiosis", "floxinoxinihilipilification", "quinquinquagintillion", "superb", "umbrella", "fantasmagorical", "stupendous", "dog", "cat", "mouse", "horse", "ham", "sandwich", "chips", "crisps", "boot", "sock", "dire" };
+            // List<string> wordList = new List<string> { "about", "apricot", "apple", "ate", "eight", "infinity", "duodecillion", "numerical", "fruit", "antidisestablishmentarianism", "pneumonoultramicroscopicsolicovolcaniconiosis", "floxinoxinihilipilification", "quinquinquagintillion", "superb", "umbrella", "fantasmagorical", "stupendous", "dog", "cat", "mouse", "horse", "ham", "sandwich", "chips", "crisps", "boot", "sock", "dire" };
 
-            // Figure out how to read "new_file" from C#
+            // Reads "new_file" into list
             List<string> newFileWordList = File.ReadAllLines(logPath).ToList();
-
-            Console.WriteLine(newFileWordList[1]);
+            // Console.WriteLine(newFileWordList[1]);
 
             // string chosenWord = newWord(wordList);
 
-            string randomWord = newWord(wordList);
+            // string randomWord = newWord(wordList);
+            // for (int i = 0; i < randomWord.Length; i++)
+            // {
+            //     char letter = randomWord.ElementAt(i);
+            //     string newLetter = letter.ToString();
+            //     getWord.Add(newLetter);
+            // }
+
+            string randomWord = newWord(newFileWordList);
             for (int i = 0; i < randomWord.Length; i++)
             {
                 char letter = randomWord.ElementAt(i);
@@ -32,17 +39,32 @@ namespace Game
             }
         }
 
-    // I could use some help here
-        public string newWord(List<string> wordList)
+
+        public string newWord(List<string> newFileWordList)
         {
             Random listIndex = new Random();
-            int lastWord = wordList.Count;
+            int lastWord = newFileWordList.Count;
             // listIndex = Convert.Toint(listIndex)
-            randomWord = wordList.ElementAt(listIndex.Next(0, lastWord));
+            randomWord = newFileWordList.ElementAt(listIndex.Next(0, lastWord));
 
-            Console.WriteLine(randomWord);
+            // Console.WriteLine(randomWord);
             return randomWord;
         }
+
+        public void displayNewWord(){
+            Console.WriteLine(randomWord);
+        }
+
+        // public string newChosenWord(List<string> newFileWordList)
+        // {
+        //     Random listIndex = new Random();
+        //     int lastWord = newFileWordList.Count;
+        //     // listIndex = Convert.Toint(listIndex)
+        //     randomWord = newFileWordList.ElementAt(listIndex.Next(0, lastWord));
+
+        //     Console.WriteLine(randomWord);
+        //     return randomWord;
+        // }
 
         public bool addGuess(string guess)
         {
@@ -64,17 +86,19 @@ namespace Game
         }
         public void Draw()
         {
+            delivery.WriteText($"\n");
             foreach (string letter in getWord)
             {
                 if (guesses.Contains(letter))
                 {
-                    delivery.WriteText($"{letter}");
+                    delivery.WriteLines($"{letter}");
                 }
                 else
                 {
                     delivery.WriteLines(" _ ");
                 }
             }
+            delivery.WriteText($"\n");
         }
     }
         // List<string> wordList = new List<string> { "about", "apricot", "apple", "ate", "eight", "infinity", "duodecillion", "numerical", "fruit", "antidisestablishmentarianism", "pneumonoultramicroscopicsolicovolcaniconiosis", "floxinoxinihilipilification", "quinquinquagintillion", "superb", "umbrella", "fantasmagorical", "stupendous", "dog", "cat", "mouse", "horse", "ham", "sandwich", "chips", "crisps", "boot", "sock", "dire" };
