@@ -85,13 +85,13 @@ namespace Game
             {
                 _isPlaying = false;
                 delivery.WriteText("\nThe Jumper died. You lose.\n");
-                delivery.WriteText($"{word.displayNewWord}");
+                // delivery.WriteText($"{word.displayNewWord}");
             }
             else if ( word.isFound())
             {
                 _isPlaying = false;
                 delivery.WriteText("\nCongratulations! You guessed the word correctly and brought the Jumper down safe and sound.\n");
-                delivery.WriteText($"\n{word.displayNewWord}\n");
+                // delivery.WriteText($"\n{word.displayNewWord}\n");
             }
             else{
                 word.Draw();

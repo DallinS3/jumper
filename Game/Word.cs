@@ -51,9 +51,9 @@ namespace Game
             return randomWord;
         }
 
-        public void displayNewWord(){
-            Console.WriteLine(randomWord);
-        }
+        // public void displayNewWord(){
+        //     Console.WriteLine(randomWord);
+        // }
 
         // public string newChosenWord(List<string> newFileWordList)
         // {
