@@ -3,6 +3,10 @@ using System.IO;
 
 namespace Game
 {
+    /// <summary>
+    /// Creates a new instance of the Word class
+    /// Runs as a new director
+    /// </summary>
     public class Word
     {
         protected string randomWord = "";
@@ -12,6 +16,10 @@ namespace Game
         private List<string> getWord = new List<string>();
         private TerminalService delivery = new TerminalService();
 
+        /// <summary>
+        /// Reads in all random words from the new_file.txt.
+        /// Puts every new word into a list.
+        /// </summary>
         public Word()
         {
             // List<string> wordList = new List<string> { "about", "apricot", "apple", "ate", "eight", "infinity", "duodecillion", "numerical", "fruit", "antidisestablishmentarianism", "pneumonoultramicroscopicsolicovolcaniconiosis", "floxinoxinihilipilification", "quinquinquagintillion", "superb", "umbrella", "fantasmagorical", "stupendous", "dog", "cat", "mouse", "horse", "ham", "sandwich", "chips", "crisps", "boot", "sock", "dire" };
@@ -39,7 +47,12 @@ namespace Game
             }
         }
 
-
+        /// <summary>
+        /// Uses the random function to pick a random word from the list.
+        /// Outputs that word to use for the game.
+        /// </summary>
+        /// <param name="newFileWordList"></param>
+        /// <returns>"randomWord"</returns>
         public string newWord(List<string> newFileWordList)
         {
             Random listIndex = new Random();
@@ -66,11 +79,21 @@ namespace Game
         //     return randomWord;
         // }
 
+        /// <summary>
+        /// Adds the letter to a guesses list
+        /// </summary>
+        /// <param name="guess"></param>
+        /// <returns></returns>
         public bool addGuess(string guess)
         {
             guesses.Add(guess);
             return getWord.Contains(guess);
         }
+
+        /// <summary>
+        /// Checks if the guessed word(s) are found in the randomWord selected.
+        /// </summary>
+        /// <returns></returns>
         public bool isFound()
         {
             bool isFound = true;
@@ -84,6 +107,11 @@ namespace Game
             }
             return isFound;
         }
+
+        /// <summary>
+        /// Outputs the right guessed letters in the terminal.
+        /// The letters not yet guessed correctly are outputted as " _ "
+        /// </summary>
         public void Draw()
         {
             delivery.WriteText($"\n");

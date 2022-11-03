@@ -10,6 +10,10 @@ namespace Game
     /// </summary>
     public class jumper_class
     {
+        /// <summary>
+        /// Creates the parachute to be used in the program
+        /// </summary>
+        /// <value></value>
         public List<string> parachute = new List<string>{
             @"    _   ",
             @"  /___\  ",
@@ -33,7 +37,7 @@ namespace Game
         }
 
         /// <summary>
-        /// Starts the game by running the main game loop.
+        /// Displays the parachute by writing the parachute as instantiated above
         /// </summary>
         public void DisplayParachute()
         {
@@ -45,6 +49,9 @@ namespace Game
         }
 
         // Jumper()
+        /// <summary>
+        /// Removes one line of the parachute for every wrong guess
+        /// </summary>
         public void BreakParachute()
         {
             parachute.RemoveAt(0);
